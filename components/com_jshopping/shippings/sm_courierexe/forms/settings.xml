@@ -3,13 +3,6 @@
     <fields name="params">
         <fieldset name="settings" label="Настройки доставки"
                   addfieldpath="/components/com_jshopping/shippings/sm_courierexe/fields">
-            <field name="shipping_service"
-                   type="services"
-                   label="Доступные пользователю способы доставки"
-                   description="Доступные пользователю способы доставки"
-                   multiple="true"
-                   default="">
-            </field>
             <field name="field_length"
                    type="extrafields"
                    label="Длина"

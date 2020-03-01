@@ -31,7 +31,6 @@ class JFormFieldServices extends JFormFieldList
 		$connection = new MeasoftCourierExt($config['api_user_name'], $config['api_user_pw'], $config['api_user_extra']);
 		$services = $connection->servicesList();
 		$options = array();
-		$options[] = HTMLHelper::_('select.option', '', 'Все');
 		if($services){
 			foreach ($services as $service)
 			{
