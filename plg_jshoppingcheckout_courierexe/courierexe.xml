@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="3.9" client="site" method="upgrade" group="jshoppingcheckout">
+    <name>PLG_JSHOPPINGCHECKOUT_COURIEREXE</name>
+    <author>Webmasterskaya</author>
+    <creationDate>01.02.2020</creationDate>
+    <copyright>Copyright (C) 2020 Webmasterskaya. All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <authorEmail>dev@webmasterskaya.xyz</authorEmail>
+    <authorUrl>https://webmasterskaya.xyz</authorUrl>
+    <version>__DEPLOY_VERSION__</version>
+    <description>PLG_JSHOPPINGCHECKOUT_COURIEREXE_DESCRIPTION</description>
+    <files>
+        <filename plugin="courierexe">courierexe.php</filename>
+    </files>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_jshoppingcheckout_courierexe.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_jshoppingcheckout_courierexe.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_jshoppingcheckout_courierexe.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_jshoppingcheckout_courierexe.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+            </fieldset>
+        </fields>
+    </config>
+</extension>

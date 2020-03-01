@@ -1,0 +1,27 @@
+<form>
+    <fields name="params">
+        <fieldset name="connection" label="Настройки подключения">
+            <field
+                    type="note"
+                    label="Начало работы"
+                    description="Для настройки Вам понадобится указать код курьерской службы, а так же имя пользователя и пароль от данного личного кабинета. Для отладки Вы можете зайти в тестовый личный кабинет по адресу https://home.courierexe.ru/8, логин: test пароль: testm. Там на закладке 'Автоматизация' Вы сможете увидеть свои запросы 'глазами' нашей системы. Так же там есть интерфейс для выполнения запросов. На закладке 'Отслеживание' Вы увидите созданные заказы."
+                    class="alert alert-info"
+            />
+            <field name="api_user_name"
+                   type="text"
+                   label="Логин"
+                   description="Логин для подключения к API"
+                   default="test"/>
+            <field name="api_user_pw"
+                   type="text"
+                   label="Пароль"
+                   description="Пароль для подключения к API"
+                   default="testm"/>
+            <field name="api_user_extra"
+                   type="text"
+                   label="Код"
+                   description="Код курьерской службы"
+                   default="8"/>
+        </fieldset>
+    </fields>
+</form>

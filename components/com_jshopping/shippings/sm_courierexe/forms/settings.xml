@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="params">
+        <fieldset name="settings" label="Настройки доставки"
+                  addfieldpath="/components/com_jshopping/shippings/sm_courierexe/fields">
+            <field name="shipping_service"
+                   type="services"
+                   label="Доступные пользователю способы доставки"
+                   description="Доступные пользователю способы доставки"
+                   multiple="true"
+                   default="">
+            </field>
+            <field name="field_length"
+                   type="extrafields"
+                   label="Длина"
+                   description="Характеристика, в которой указана длина, в см"
+                   required=""
+                   default="">
+            </field>
+            <field name="field_width"
+                   type="extrafields"
+                   label="Ширина"
+                   description="Характеристика, в которой указана ширина, в см"
+                   required=""
+                   default="">
+            </field>
+            <field name="field_height"
+                   type="extrafields"
+                   label="Высота"
+                   description="Характеристика, в которой указана высота, в см"
+                   required=""
+                   default="">
+            </field>
+            <field name="townfrom"
+                   id="townfrom"
+                   type="text"
+                   label="Город отправления"
+                   description="Для расчёта стоимости, необходимо указать город отправления"
+                   />
+        </fieldset>
+    </fields>
+</form>
