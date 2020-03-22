@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="file" method="upgrade">
+    <name>COM_JSHOPPING_ADDON_COURIEREXE</name>
+    <author>Artem Vasilev - Webmasterskaya</author>
+    <creationDate>01.02.2020</creationDate>
+    <copyright>Copyright (C) 2020 Webmasterskaya. All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <authorEmail>dev@webmasterskaya.xyz</authorEmail>
+    <authorUrl>https://webmasterskaya.xyz</authorUrl>
+    <version>__DEPLOY_VERSION__</version>
+    <description>COM_JSHOPPING_ADDON_COURIEREXE_XML_DESCRIPTION</description>
+
+    <fileset>
+
+        <files folder="language" target="administrator/language">
+            <filename>en-GB/en-GB.com_jshopping_addon_courierexe.ini</filename>
+            <filename>ru-RU/ru-RU.com_jshopping_addon_courierexe.ini</filename>
+        </files>
+
+        <files folder="media" target="media/com_jshopping_addon_courierexe">
+            <filename>css/select2.css</filename>
+            <filename>css/select2.min.css</filename>
+            <filename>js/autocomplite.js</filename>
+            <filename>js/select2.js</filename>
+            <filename>js/select2.full.js</filename>
+            <filename>js/select2.full.min.js</filename>
+            <filename>js/select2.min.js</filename>
+            <folder>js/i18n</folder>
+            <filename>js/i18n/de.js</filename>
+            <filename>js/i18n/en.js</filename>
+            <filename>js/i18n/ru.js</filename>
+        </files>
+
+        <files folder="sm_courierexe" target="components/com_jshopping/shippings/sm_courierexe">
+            <filename>fields/extrafields.php</filename>
+            <filename>fields/services.php</filename>
+            <filename>forms/connection.xml</filename>
+            <filename>forms/settings.xml</filename>
+            <filename>forms/shippingprice.xml</filename>
+            <filename>configform.php</filename>
+            <filename>shippingpriceform.php</filename>
+            <filename>sm_courierexe.php</filename>
+        </files>
+
+        <files folder="sm_courierexe_form" target="components/com_jshopping/shippingform/sm_courierexe_form">
+            <filename>sm_courierexe_form.php</filename>
+        </files>
+
+    </fileset>
+</extension>

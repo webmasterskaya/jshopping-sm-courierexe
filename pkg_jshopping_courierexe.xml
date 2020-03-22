@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="package" method="upgrade">
+    <name>PKG_JSHOPPING_COURIEREXE</name>
+    <packagename>jshopping_courierexe</packagename>
+    <author>Artem Vasilev - Webmasterskaya</author>
+    <creationDate>01.02.2020</creationDate>
+    <copyright>Copyright (C) 2020 Webmasterskaya. All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+    <authorEmail>dev@webmasterskaya.xyz</authorEmail>
+    <authorUrl>https://webmasterskaya.xyz</authorUrl>
+    <version>__DEPLOY_VERSION__</version>
+    <description>PKG_JSHOPPING_COURIEREXE_XML_DESCRIPTION</description>
+
+    <scriptfile>script.php</scriptfile>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.pkg_jshopping_courierexe.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.pkg_jshopping_courierexe.sys.ini</language>
+    </languages>
+
+    <files>
+        <folder type="plugin" method="upgrade" group="jshoppingcheckout" id="courierexe">plg_jshoppingcheckout_courierexe</folder>
+        <folder type="library" method="upgrade" id="measoft" client="site">lib_measoft</folder>
+        <folder type="files" method="upgrade" id="com_jshopping_addon_courierexe">com_jshopping_addon_courierexe</folder>
+    </files>
+
+    <updateservers>
+        <server type="extension" priority="1" name="jshopping-courierexe">
+            https://webmasterskaya.xyz/update?extension=pkg_jshopping_courierexe
+        </server>
+    </updateservers>
+
+</extension>

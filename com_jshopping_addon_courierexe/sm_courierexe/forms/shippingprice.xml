@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="sm_params">
+        <fieldset name="shippingprice" label="Настройки доставки"
+                  addfieldpath="/components/com_jshopping/shippings/sm_courierexe/fields">
+            <field name="townfrom"
+                   type="text"
+                   label="Город отправления"
+                   description="Для расчёта стоимости, необходимо указать город отправления"
+            />
+            <field name="shipping_service"
+                   type="services"
+                   label="Способ доставки"
+                   description="Способ доставки"
+                   default="">
+            </field>
+            <field name="show_pvz"
+                   type="radio"
+                   label="Показывать список ПВЗ"
+                   class="btn-group btn-group-yesno"
+                   default="0">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field type="spacer" hr="true" showon="show_pvz:1"/>
+            <field
+                    type="note"
+                    label="Параметры фильтрации ПВЗ" showon="show_pvz:1"/>
+            <field name="acceptcash"
+                   type="radio"
+                   label="приему наличных"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="acceptcard"
+                   type="radio"
+                   label="приему банковских карт"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="acceptfitting "
+                   type="radio"
+                   label="наличию примерки"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="acceptindividuals"
+                   type="radio"
+                   label="доступности физическим лицам"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field type="spacer" hr="true" showon="show_pvz:1"/>
+            <field
+                    type="note"
+                    label="Параметры отображения списка ПВЗ" showon="show_pvz:1"/>
+            <field name="show_pvz_list"
+                   type="radio"
+                   label="Показывать список"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="show_pvz_list_ajax"
+                   type="radio"
+                   label="Отложенная загрузка списка"
+                   description="Загружает список ПВЗ, после полной загрузки страницы. Может ускорить загрузку страницы, но увеличит нагрузку на сеть."
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz_list:1[AND]show_pvz:1"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="show_pvz_map"
+                   type="radio"
+                   label="Показывать карту"
+                   class="btn-group btn-group-yesno"
+                   showon="show_pvz:1"
+                   default="0">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+        </fieldset>
+    </fields>
+</form>

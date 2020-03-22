@@ -8,12 +8,12 @@
  * @link       https://webmasterskaya.xyz/
  */
 
+use Joomla\CMS\Factory as Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
 
 defined('_JEXEC') or die();
 
-JLoader::register('MeasoftCourierExt',
-	JPATH_ROOT . '/components/com_jshopping/shippings/sm_courierexe/classes/MeasoftCourierExt.php');
+JLoader::register('MeasoftCourier', JPATH_LIBRARIES . '/measoft/MeasoftCourier.php');
 
 class plgJshoppingcheckoutCourierexe extends CMSPlugin
 {
@@ -21,22 +21,13 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 	public function __construct(&$subject, $config = array())
 	{
-		$db    = \Joomla\CMS\Factory::getDbo();
-		$query = $db->getQuery(true);
-		$query->select($db->quoteName('params'))
-			->from($db->quoteName('#__jshopping_shipping_ext_calc'))
-			->where($db->quoteName('alias') . ' = ' . $db->quote('sm_courierexe'));
-		$config = unserialize($db->setQuery($query)->loadResult());
-
-		$this->connection = new MeasoftCourierExt($config['api_user_name'], $config['api_user_pw'],
-			$config['api_user_extra']);
-
+		$this->connection = MeasoftCourier::getInstance();
 		parent::__construct($subject, $config);
 	}
 
 	public function onAjaxCourierexe()
 	{
-		$input = \Joomla\CMS\Factory::getApplication()->input;
+		$input = Factory::getApplication()->input;
 		$get   = $input->get->getArray();
 		$task  = $input->get('task', '');
 		if (!$task)
@@ -44,15 +35,23 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			return true;
 		}
 
-		switch ($task){
+		switch ($task)
+		{
 			case 'cities':
-				$path_of_city_name = trim($get['city_name']);
-				if(strlen($path_of_city_name) > 0){
-					return $this->connection->citiesList(array('namecontains'=>strtolower($path_of_city_name), 'country'=>1), array('limitcount'=>10));
-				}
+				return $this->getCitiesList(trim($get['city_name']));
 				break;
 		}
 
 		return true;
+	}
+
+	public function getCitiesList($str, $limit = 10)
+	{
+		if (strlen($str) > 0)
+		{
+			$result = $this->connection->citiesList(array('namecontains' => strtolower($str), 'country' => 1),
+				array('limitcount' => $limit));
+		}
+		return !empty($result) ? $result : [];
 	}
 }
