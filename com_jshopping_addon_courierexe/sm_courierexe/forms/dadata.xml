@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="params">
+        <fieldset name="dadata" label="Интеграция с подсказками DaData"
+                  addfieldpath="/components/com_jshopping/shippings/sm_courierexe/fields">
+            <field name="use_dadata"
+                   type="radio"
+                   label="Использовать подсказки DaData"
+                   class="btn-group btn-group-yesno"
+                   default="1">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+            <field name="dadata_key"
+                   type="text"
+                   label="API ключ сервиса DaData"
+                   class="btn-group btn-group-yesno"
+                   default=""
+                   showon="use_dadata:1"
+            />
+            <field name="dadata_field"
+                   type="jsfields"
+                   label="Поле, к которому будет прикреплена подсказка"
+                   description="Выберите поле, на которое будет прикреплена подсказка DaData. Это поле должно быть опубликовано, в настройках компонента!"
+                   fieldfilter="display:1"
+                   groupfilter="address"
+                   default="">
+            </field>
+        </fieldset>
+    </fields>
+</form>

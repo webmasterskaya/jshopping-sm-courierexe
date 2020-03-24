@@ -51,8 +51,6 @@ class sm_courierexe extends shippingextRoot
 			}
 		}
 
-		self::$error[] = 'Для расчёта стоимости доставки, необходимо заполнить поле "Город"';
-
 		$weight_sum = saveAsPrice($cart->getWeightProducts());
 		$length_sum = 0;
 		$width_sum  = 0;
@@ -76,8 +74,6 @@ class sm_courierexe extends shippingextRoot
 
 		if (!strlen($cityto))
 		{
-			echo "<small>Для расчёта стоимости доставки, необходимо заполнить поле \"Город\".</small>";
-
 			return 0;
 		}
 
@@ -127,7 +123,7 @@ class sm_courierexe extends shippingextRoot
 		$this->form->addFormPath(dirname(__FILE__) . '/forms');
 		$this->form->loadFile('shippingprice');
 		$this->form->bind(['sm_params' => $params]);
-		include(dirname(__FILE__) . "/shippingpriceform.php");
+		require_once dirname(__FILE__) . "/shippingpriceform.php";
 	}
 
 	function showConfigForm($config, &$shipping_ext, &$template)
@@ -136,7 +132,8 @@ class sm_courierexe extends shippingextRoot
 		$this->form->addFormPath(dirname(__FILE__) . '/forms');
 		$this->form->loadFile('connection');
 		$this->form->loadFile('settings');
+		$this->form->loadFile('dadata');
 		$this->form->bind(['params' => $config]);
-		include(dirname(__FILE__) . "/configform.php");
+		require_once dirname(__FILE__) . "/configform.php";
 	}
 }

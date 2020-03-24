@@ -23,7 +23,7 @@ class sm_courierexe_form extends ShippingFormRoot
 		$app      = Factory::getApplication();
 		$doc      = $app->getDocument();
 		$language = Factory::getLanguage();
-		$language->load('com_jshopping_addon_courierexe', JPATH_SITE, $language->getTag(), true);
+		$language->load('com_jshopping_addon_courierexe', JPATH_ADMINISTRATOR, $language->getTag(), true);
 		$connection = MeasoftCourier::getInstance();
 
 		$shipping_params = unserialize($shippinginfo->params);
@@ -93,8 +93,8 @@ class sm_courierexe_form extends ShippingFormRoot
 				$pvzParams['acceptindividuals '] = $shipping_params['acceptindividuals '];
 			}
 
-			$doc->addScriptDeclaration('var pvzParams = ' . json_encode($pvzParams,
-					JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . ';');
+			echo "<script>" . 'var pvzParams = ' . json_encode($pvzParams,
+					JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . ';' . "</script>";
 
 			if ($shipping_params['show_pvz_list'])
 			{
@@ -132,8 +132,8 @@ class sm_courierexe_form extends ShippingFormRoot
 									}
 								}
 							}
-							$doc->addScriptDeclaration('var pvzData = ' . json_encode($pvz,
-									JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . ';');
+							echo "<script>" . 'var pvzData = ' . json_encode($pvz,
+									JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . ';' . "</script>";
 							$doc->addScriptDeclaration('
 								jQuery(document).ready(function() {
 									jQuery(\'[name="params[' . $shipping_id . '][sm_courierexe_pvz_id]"]\').

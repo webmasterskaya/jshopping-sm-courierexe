@@ -18,6 +18,9 @@
         </files>
 
         <files folder="media" target="media/com_jshopping_addon_courierexe">
+            <folder>css</folder>
+            <folder>js</folder>
+            <folder>js/i18n</folder>
             <filename>css/select2.css</filename>
             <filename>css/select2.min.css</filename>
             <filename>js/autocomplite.js</filename>
@@ -25,13 +28,14 @@
             <filename>js/select2.full.js</filename>
             <filename>js/select2.full.min.js</filename>
             <filename>js/select2.min.js</filename>
-            <folder>js/i18n</folder>
             <filename>js/i18n/de.js</filename>
             <filename>js/i18n/en.js</filename>
             <filename>js/i18n/ru.js</filename>
         </files>
 
         <files folder="sm_courierexe" target="components/com_jshopping/shippings/sm_courierexe">
+            <folder>fields</folder>
+            <folder>forms</folder>
             <filename>fields/extrafields.php</filename>
             <filename>fields/services.php</filename>
             <filename>forms/connection.xml</filename>

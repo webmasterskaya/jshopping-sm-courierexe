@@ -115,7 +115,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		return $this->connection->orderCreate($data, $items);
 	}
 
-	protected function onAjaxCourierexe()
+	public function onAjaxCourierexe()
 	{
 		$input = Factory::getApplication()->input;
 		$get   = $input->get->getArray();
