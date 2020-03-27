@@ -8,11 +8,20 @@
  * @link       https://webmasterskaya.xyz/
  */
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die();
 
 HTMLHelper::_('formbehavior.chosen', 'select');
+
+$app = Factory::getApplication();
+$doc = $app->getDocument();
+$doc->addStyleDeclaration('
+    .jshop_edit fieldset.adminform label {
+        display: inline-block;
+    }');
+
 ?>
 <div class="form-horizontal">
     <div class="row-fluid">

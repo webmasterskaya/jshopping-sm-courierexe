@@ -26,6 +26,16 @@
                    groupfilter="address"
                    default="">
             </field>
+            <field name="dadata_hide_other"
+                   class="btn-group btn-group-yesno"
+                   type="radio"
+                   label="Скрывать детальные поля"
+                   description="Укажите, скрыть, показать или оставить, как есть, поля детализации Город, Улица, Номер дома, Регион, Почтовый индекс"
+                   default="1">
+                <option value="1">Скрыть</option>
+                <option value="0">Оставить как есть</option>
+                <option value="2">Показать</option>
+            </field>
         </fieldset>
     </fields>
 </form>
