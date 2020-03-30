@@ -1,0 +1,32 @@
+{
+  "name": "addon-sm-courierexe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "copy:js:autocomplite": "cpy node_modules/devbridge-autocomplete/dist/*.js com_jshopping_addon_courierexe/media/js",
+    "copy:js:select2:i18n": "cpy node_modules/select2/dist/js/i18n/ru.js node_modules/select2/dist/js/i18n/en.js com_jshopping_addon_courierexe/media/js/i18n",
+    "copy:js:select2": "cpy node_modules/select2/dist/js/*.js com_jshopping_addon_courierexe/media/js && npm run copy:js:select2:i18n",
+    "copy:css:select2": "cpy node_modules/select2/dist/css/*.css com_jshopping_addon_courierexe/media/css",
+    "copy:js": "npm run copy:js:autocomplite && npm run copy:js:select2",
+    "copy:css": "npm run copy:css:select2",
+    "copy": "npm run copy:css && npm run copy:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kernusr/addon-sm-courierexe.git"
+  },
+  "author": "Webmasterskaya",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/kernusr/addon-sm-courierexe/issues"
+  },
+  "homepage": "https://github.com/kernusr/addon-sm-courierexe#readme",
+  "dependencies": {
+    "select2": "^4.0.13",
+    "devbridge-autocomplete": "^1.4.10"
+  },
+  "devDependencies": {
+    "cpy-cli": "^3.1.0"
+  }
+}

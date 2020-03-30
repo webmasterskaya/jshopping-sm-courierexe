@@ -1,3 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
 *.zip
+package-lock.json
+node_modules
+com_jshopping_addon_courierexe/media/css
+com_jshopping_addon_courierexe/media/js
