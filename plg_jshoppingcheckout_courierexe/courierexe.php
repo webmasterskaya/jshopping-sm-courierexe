@@ -67,13 +67,18 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			$order->setShippingParamsData($shipping_params_data);
 		}
 
+		if(!empty($order->delivery_adress)){
+			$address = implode(',', [$order->d_street, $order->d_home, $order->d_apartment]);
+		} else {
+			$address = implode(',', [$order->street, $order->home, $order->apartment]);
+		}
+
 		$newOrder = [
 			'orderno'         => $order->order_number,
 			'person'          => implode(' ', [$order->d_f_name . ' ' . $order->d_l_name . ' ' . $order->d_m_name]),
 			'phone'           => implode(', ', [$order->d_email, $order->d_phone, $order->d_mobil_phone]),
 			'town'            => $city['fiascode'],
-			'address'         => implode(' ',
-				[$order->d_street, $order->d_home, $order->d_apartment]),
+			'address'         => $address,
 			'weight'          => saveAsPrice($cart->getWeightProducts()),
 			'service'         => $shipping_method_params['shipping_service'],
 			'price'           => $order->order_total,

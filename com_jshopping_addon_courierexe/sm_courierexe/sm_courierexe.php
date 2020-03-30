@@ -1,7 +1,4 @@
 <?php
-
-use Joomla\CMS\Form\Form;
-
 /**
  * @package    JShopping - Courierexe shipping
  * @version    __DEPLOY_VERSION__
@@ -11,8 +8,23 @@ use Joomla\CMS\Form\Form;
  * @link       https://webmasterskaya.xyz/
  */
 
+use Joomla\CMS\Form\Form;
+use Joomla\CMS\HTML\HTMLHelper;
+
+defined('_JEXEC') or die();
+
 JLoader::register('MeasoftCourier', JPATH_LIBRARIES . '/measoft/MeasoftCourier.php');
 require_once JPATH_SITE . '/components/com_jshopping/lib/functions.php';
+
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('formbehavior.chosen', 'select');
+HTMLHelper::_('script', 'com_jshopping_addon_courierexe/jquery.autocomplete.js',
+	array('relative' => true, 'version' => 'auto'));
+HTMLHelper::_('script', 'com_jshopping_addon_courierexe/admin-script.js',
+	array('relative' => true, 'version' => 'auto'));
+HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/admin-style.css',
+	array('relative' => true, 'version' => 'auto'));
 
 class sm_courierexe extends shippingextRoot
 {
@@ -135,6 +147,10 @@ class sm_courierexe extends shippingextRoot
 		$this->form->loadFile('connection');
 		$this->form->loadFile('settings');
 		$this->form->bind(['params' => $config]);
+
+		$table_pm       = JSFactory::getTable('PaymentMethod');
+		$paymentMethods = $table_pm->getAllPaymentMethods();
+
 		require_once dirname(__FILE__) . "/configform.php";
 	}
 }
