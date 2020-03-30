@@ -1,7 +1,6 @@
 <?php
 
 use Joomla\CMS\Form\Form;
-use Joomla\CMS\Language\Text;
 
 /**
  * @package    JShopping - Courierexe shipping
@@ -25,7 +24,7 @@ class sm_courierexe extends shippingextRoot
 	public function getPrice($cart, $params, $prices, &$shipping_ext_row, &$shipping_method_price)
 	{
 		$shipping_params = unserialize($shipping_ext_row->params);
-		$method_params = unserialize($shipping_method_price->params);
+		$method_params   = unserialize($shipping_method_price->params);
 
 		$error = false;
 
@@ -89,14 +88,17 @@ class sm_courierexe extends shippingextRoot
 		{
 			$calcParams['mass'] = $weight_sum;
 		}
+
 		if ($length_sum > 0)
 		{
 			$calcParams['l'] = $length_sum;
 		}
+
 		if ($width_sum > 0)
 		{
 			$calcParams['w'] = $width_sum;
 		}
+
 		if ($height_sum > 0)
 		{
 			$calcParams['h'] = $height_sum;
@@ -117,7 +119,7 @@ class sm_courierexe extends shippingextRoot
 		}
 	}
 
-	function showShippingPriceForm($params, &$shipping_ext_row, &$template)
+	public function showShippingPriceForm($params, &$shipping_ext_row, &$template)
 	{
 		$this->form = new Form('adminForm');
 		$this->form->addFormPath(dirname(__FILE__) . '/forms');
@@ -126,13 +128,12 @@ class sm_courierexe extends shippingextRoot
 		require_once dirname(__FILE__) . "/shippingpriceform.php";
 	}
 
-	function showConfigForm($config, &$shipping_ext, &$template)
+	public function showConfigForm($config, &$shipping_ext, &$template)
 	{
 		$this->form = new Form('adminForm');
 		$this->form->addFormPath(dirname(__FILE__) . '/forms');
 		$this->form->loadFile('connection');
 		$this->form->loadFile('settings');
-		$this->form->loadFile('dadata');
 		$this->form->bind(['params' => $config]);
 		require_once dirname(__FILE__) . "/configform.php";
 	}

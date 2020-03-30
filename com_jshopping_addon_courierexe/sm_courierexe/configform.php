@@ -29,7 +29,6 @@ $doc->addStyleDeclaration('
             <div class="row-fluid form-horizontal-desktop float-cols">
                 <div class="span6">
 					<?php echo $this->form->renderFieldset('settings'); ?>
-					<?php echo $this->form->renderFieldset('dadata'); ?>
                 </div>
                 <div class="span6">
 					<?php echo $this->form->renderFieldset('connection'); ?>

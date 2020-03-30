@@ -9,7 +9,6 @@
  */
 
 use Joomla\CMS\Factory as Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 
 defined('_JEXEC') or die();
@@ -45,7 +44,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		$shipping_method        = $checkout->getShippingMethod();
 		$shipping_method_params = unserialize($checkout->getShippingMethodPrice()->params);
 
-		$city = array_shift($this->getCitiesList(!empty($order->d_city) ? $order->d_city : $order->city, 1));
+		$city = array_shift($this->getCitiesList(!empty($order->delivery_adress) ? $order->d_city : $order->city, 1));
 
 		if (!empty($shipping_params_data['sm_courierexe_pvz_id']))
 		{
@@ -142,80 +141,5 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		}
 
 		return true;
-	}
-
-	public function onBeforeDisplayCheckoutStep2View(&$view)
-	{
-		if (!$this->sm_config['use_dadata'])
-		{
-			return;
-		}
-
-		if (empty($this->sm_config['dadata_key']))
-		{
-			return;
-		}
-
-		if (empty($this->sm_config['dadata_field']))
-		{
-			return;
-		}
-
-		if (empty($view->config_fields[$this->sm_config['dadata_field']]))
-		{
-			return;
-		}
-
-		$view->config_fields[$this->sm_config['dadata_field']]['display'] = 1;
-
-		$other_fields_name = ['zip', 'state', 'city', 'street', 'home', 'apartment'];
-
-		switch ($this->sm_config['dadata_hide_other'])
-		{
-			case 1:
-				foreach ($other_fields_name as $field)
-				{
-					$view->config_fields[$field]['display']        = 0;
-					$view->config_fields['d_' . $field]['display'] = 0;
-
-					$view->_tmpl_address_html_4 .= PHP_EOL . '<input type="hidden" id="' . $field . '" name="' . $field . '" value="' . $view->user->{$field} . '" />';
-					$view->_tmpl_address_html_7 .= PHP_EOL . '<input type="hidden" id="d_' . $field . '" name="d_' . $field . '" value="' . $view->user->{'d_' . $field} . '" />';
-				}
-				break;
-			case 2:
-				foreach ($other_fields_name as $field)
-				{
-					$view->config_fields[$field]['display']        = 1;
-					$view->config_fields['d_' . $field]['display'] = 1;
-				}
-				break;
-			default:
-				foreach ($other_fields_name as $field)
-				{
-					if ($view->config_fields[$field]['display'] == 0)
-					{
-						$view->_tmpl_address_html_4 .= PHP_EOL . '<input type="hidden" id="' . $field . '" name="' . $field . '" value="' . $view->user->{$field} . '" />';
-					}
-					if ($view->config_fields['d_' . $field]['display'] == 0)
-					{
-						$view->_tmpl_address_html_7 .= PHP_EOL . '<input type="hidden" id="d_' . $field . '" name="d_' . $field . '" value="' . $view->user->{'d_' . $field} . '" />';
-					}
-				}
-				break;
-		}
-
-		HTMLHelper::_('behavior.keepalive');
-		HTMLHelper::_('jquery.framework');
-		HTMLHelper::_('script', 'com_jshopping_addon_courierexe/jquery.suggestions.js', ['relative'=>true, 'version'=>'auto']);
-		HTMLHelper::_('script', 'com_jshopping_addon_courierexe/dadata-helper.js', ['relative'=>true, 'version'=>'auto']);
-		HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/suggestions.css', ['relative'=>true, 'version'=>'auto']);
-
-		$app = Factory::getApplication();
-		$doc = $app->getDocument();
-
-		$doc->addScriptOptions('sm_courierexe_dadata', [
-			'token' => $this->sm_config['dadata_key'],
-			'element' => $this->sm_config['dadata_field']
-		]);
 	}
 }
