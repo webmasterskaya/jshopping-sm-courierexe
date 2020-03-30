@@ -9,22 +9,11 @@
  */
 
 use Joomla\CMS\Form\Form;
-use Joomla\CMS\HTML\HTMLHelper;
 
 defined('_JEXEC') or die();
 
 JLoader::register('MeasoftCourier', JPATH_LIBRARIES . '/measoft/MeasoftCourier.php');
 require_once JPATH_SITE . '/components/com_jshopping/lib/functions.php';
-
-HTMLHelper::_('behavior.keepalive');
-HTMLHelper::_('jquery.framework');
-HTMLHelper::_('formbehavior.chosen', 'select');
-HTMLHelper::_('script', 'com_jshopping_addon_courierexe/jquery.autocomplete.js',
-	array('relative' => true, 'version' => 'auto'));
-HTMLHelper::_('script', 'com_jshopping_addon_courierexe/admin-script.js',
-	array('relative' => true, 'version' => 'auto'));
-HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/admin-style.css',
-	array('relative' => true, 'version' => 'auto'));
 
 class sm_courierexe extends shippingextRoot
 {

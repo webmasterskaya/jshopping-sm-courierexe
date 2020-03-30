@@ -34,6 +34,12 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 	public function onBeforeCreateOrder(&$order, &$cart, &$checkout)
 	{
+//		echo "<pre>";
+//		var_dump($order);
+//		die();
+
+		//payment_method_id
+
 		$shipping_params_data = $order->getShippingParamsData();
 
 		if (!$shipping_params_data['sm_courierexe'])
@@ -44,7 +50,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		$shipping_method        = $checkout->getShippingMethod();
 		$shipping_method_params = unserialize($checkout->getShippingMethodPrice()->params);
 
-		$city = array_shift($this->getCitiesList(!empty($order->delivery_adress) ? $order->d_city : $order->city, 1));
+		$city = array_shift($this->getCitiesList(!empty($order->d_city) ? $order->d_city : $order->city, 1));
 
 		if (!empty($shipping_params_data['sm_courierexe_pvz_id']))
 		{
@@ -55,7 +61,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 			$shipping_params_data['sm_courierexe_pvz_name']       = $pvz->name->__toString();
 			$shipping_params_data['sm_courierexe_pvz_parentname'] = $pvz->parentname->__toString();
-			$shipping_params_data['sm_courierexe_pvz_address']    = $pvz->address->__toString();
+			$shipping_params_data['sm_courierexe_pvz_address']    = trim($pvz->town->__toString() . ',' . $pvz->address->__toString(), ',');
 
 			if ($shippingForm)
 			{
@@ -67,9 +73,12 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			$order->setShippingParamsData($shipping_params_data);
 		}
 
-		if(!empty($order->delivery_adress)){
+		if (!empty($order->delivery_adress))
+		{
 			$address = implode(',', [$order->d_street, $order->d_home, $order->d_apartment]);
-		} else {
+		}
+		else
+		{
 			$address = implode(',', [$order->street, $order->home, $order->apartment]);
 		}
 
@@ -82,8 +91,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			'weight'          => saveAsPrice($cart->getWeightProducts()),
 			'service'         => $shipping_method_params['shipping_service'],
 			'price'           => $order->order_total,
-			//Настроить связь типов оплаты и методов оплаты
-			'paytype'         => 'CASH',
+			'paytype'         => $this->sm_config['pay_systems'][$order->payment_method_id] ? $this->sm_config['pay_systems'][$order->payment_method_id] : 'CASH',
 			'deliveryprice'   => $order->jshop_price_shipping,
 			'acceptpartially' => 'NO'
 		];
@@ -92,7 +100,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		foreach ($cart->products as $product)
 		{
 			$products[] = [
-				'item'     => $product['product_name'],
+				'item'     => htmlspecialchars($product['product_name']),
 				'quantity' => $product['quantity'],
 				'mass'     => $product['weight'],
 				'retprice' => $product['price'],
@@ -142,6 +150,41 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		{
 			case 'cities':
 				return $this->getCitiesList(trim($get['city_name']));
+				break;
+			case 'pvz':
+				$filter         = $input->get('filter', [], 'array');
+				$city           = array_shift($this->getCitiesList($filter['town'], 1));
+				$filter['town'] = $city['name'];
+				$pvzList        = $this->getPvzList($filter);
+				$pvz            = [];
+
+				if ($pvzList)
+				{
+					$i = 0;
+					foreach ($pvzList as $item)
+					{
+						if($i == 10) break;
+						if (!empty($item->code) && !empty($item->address))
+						{
+							if (!empty($item->parentname))
+							{
+								$pvz[] = [
+									'id'   => $item->code->__toString(),
+									'text' => '(' . $item->parentname->__toString() . ') ' . $item->address->__toString()
+								];
+							}
+							else
+							{
+								$pvz[] = [
+									'id'   => $item->code->__toString(),
+									'text' => $item->address->__toString()
+								];
+							}
+						}
+						$i++;
+					}
+				}
+				return $pvz;
 				break;
 		}
 

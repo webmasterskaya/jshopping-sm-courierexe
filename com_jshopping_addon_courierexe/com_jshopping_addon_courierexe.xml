@@ -23,7 +23,8 @@
             <folder>js/i18n</folder>
             <filename>css/select2.css</filename>
             <filename>css/select2.min.css</filename>
-            <filename>js/autocomplite.js</filename>
+            <filename>js/jquery.autocomplete.js</filename>
+            <filename>js/jquery.autocomplete.min.js</filename>
             <filename>js/select2.js</filename>
             <filename>js/select2.full.js</filename>
             <filename>js/select2.full.min.js</filename>
