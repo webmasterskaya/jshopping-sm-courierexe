@@ -61,7 +61,8 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 			$shipping_params_data['sm_courierexe_pvz_name']       = $pvz->name->__toString();
 			$shipping_params_data['sm_courierexe_pvz_parentname'] = $pvz->parentname->__toString();
-			$shipping_params_data['sm_courierexe_pvz_address']    = trim($pvz->town->__toString() . ',' . $pvz->address->__toString(), ',');
+			$shipping_params_data['sm_courierexe_pvz_address']    = trim($pvz->town->__toString() . ',' . $pvz->address->__toString(),
+				',');
 
 			if ($shippingForm)
 			{
@@ -160,10 +161,8 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 				if ($pvzList)
 				{
-					$i = 0;
 					foreach ($pvzList as $item)
 					{
-						if($i == 10) break;
 						if (!empty($item->code) && !empty($item->address))
 						{
 							if (!empty($item->parentname))
@@ -181,9 +180,9 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 								];
 							}
 						}
-						$i++;
 					}
 				}
+
 				return $pvz;
 				break;
 		}
