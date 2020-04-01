@@ -1,9 +1,4 @@
 <?php
-
-use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper as HTMLHelper;
-use Joomla\CMS\Language\Text;
-
 /**
  * @package    JShopping - Courierexe shipping
  * @version    __DEPLOY_VERSION__
@@ -12,6 +7,10 @@ use Joomla\CMS\Language\Text;
  * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
  * @link       https://webmasterskaya.xyz/
  */
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper as HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 JLoader::register('MeasoftCourier', JPATH_LIBRARIES . '/measoft/MeasoftCourier.php');
 require_once JPATH_SITE . '/components/com_jshopping/lib/functions.php';
@@ -25,7 +24,48 @@ class sm_courierexe_form extends ShippingFormRoot
 		$language->load('com_jshopping_addon_courierexe', JPATH_ADMINISTRATOR, $language->getTag(), true);
 		$connection = MeasoftCourier::getInstance();
 
+		HTMLHelper::_('jquery.framework');
+		HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/select2.min.css',
+			array('relative' => true, 'version' => 'auto'));
+		HTMLHelper::_('script', 'com_jshopping_addon_courierexe/select2.min.js',
+			array('relative' => true, 'version' => 'auto'));
+		HTMLHelper::_('script',
+			'com_jshopping_addon_courierexe/i18n/' . substr($language->getTag(), 0, 2) . '.js',
+			array('relative' => true, 'version' => 'auto'));
+		HTMLHelper::_('script', 'com_jshopping_addon_courierexe/script.js',
+			array('relative' => true, 'version' => 'auto'));
+
 		$shipping_params = unserialize($shippinginfo->params);
+
+		$pvzParams = array();
+
+		if (isset($shipping_params['acceptcash']))
+		{
+			$pvzParams['acceptcash'] = $shipping_params['acceptcash'];
+		}
+
+		if (isset($shipping_params['acceptcard']))
+		{
+			$pvzParams['acceptcard'] = $shipping_params['acceptcard'];
+		}
+
+		if (isset($shipping_params['acceptfitting']))
+		{
+			$pvzParams['acceptfitting'] = $shipping_params['acceptfitting'];
+		}
+
+		if (isset($shipping_params['acceptindividuals ']))
+		{
+			$pvzParams['acceptindividuals '] = $shipping_params['acceptindividuals '];
+		}
+
+		$doc->addScriptOptions('sm_courierexe', [
+			$shipping_id => [
+				'pvzParams'          => $pvzParams,
+				'show_pvz_list'      => $shipping_params['show_pvz_list'],
+				'show_pvz_list_ajax' => $shipping_params['show_pvz_list_ajax']
+			]
+		], true);
 
 		$user = &JFactory::getUser();
 		if ($user->id)
@@ -65,53 +105,11 @@ class sm_courierexe_form extends ShippingFormRoot
 
 		echo '<input type="hidden" name="params[' . $shipping_id . '][sm_courierexe]" value="true" />';
 
-		//var_dump($shipping_params);
 		if ($shipping_params['show_pvz'])
 		{
-			$pvzParams = array();
-
-			$pvzParams['town'] = $cityto;
-
-			if (isset($shipping_params['acceptcash']))
-			{
-				$pvzParams['acceptcash'] = $shipping_params['acceptcash'];
-			}
-
-			if (isset($shipping_params['acceptcard']))
-			{
-				$pvzParams['acceptcard'] = $shipping_params['acceptcard'];
-			}
-
-			if (isset($shipping_params['acceptfitting']))
-			{
-				$pvzParams['acceptfitting'] = $shipping_params['acceptfitting'];
-			}
-
-			if (isset($shipping_params['acceptindividuals ']))
-			{
-				$pvzParams['acceptindividuals '] = $shipping_params['acceptindividuals '];
-			}
-
-			HTMLHelper::_('jquery.framework');
-			HTMLHelper::_('script', 'com_jshopping_addon_courierexe/script.js',
-				array('relative' => true, 'version' => 'auto'));
-			$doc->addScriptOptions('sm_courierexe', [
-				$shipping_id => [
-					'pvzParams'          => $pvzParams,
-					'show_pvz_list'      => $shipping_params['show_pvz_list'],
-					'show_pvz_list_ajax' => $shipping_params['show_pvz_list_ajax']
-				]
-			], true);
-
 			if ($shipping_params['show_pvz_list'])
 			{
-				HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/select2.min.css',
-					array('relative' => true, 'version' => 'auto'));
-				HTMLHelper::_('script', 'com_jshopping_addon_courierexe/select2.min.js',
-					array('relative' => true, 'version' => 'auto'));
-				HTMLHelper::_('script',
-					'com_jshopping_addon_courierexe/i18n/' . substr($language->getTag(), 0, 2) . '.js',
-					array('relative' => true, 'version' => 'auto'));
+				$pvzParams['town'] = $cityto;
 
 				if (!$shipping_params['show_pvz_list_ajax'])
 				{

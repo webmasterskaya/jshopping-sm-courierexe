@@ -6,5 +6,5 @@ node_modules
 com_jshopping_addon_courierexe/media/css
 com_jshopping_addon_courierexe/media/js
 !/com_jshopping_addon_courierexe/media/js/admin-script.js
-!/com_jshopping_addon_courierexe/media/css/admin-style.css
 !/com_jshopping_addon_courierexe/media/js/script.js
+!/com_jshopping_addon_courierexe/media/css/admin-style.css
