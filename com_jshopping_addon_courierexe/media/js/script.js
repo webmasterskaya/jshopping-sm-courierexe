@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 	initPvzLists();
 
-	if (!!oneStepCheckout) {
+	if (typeof oneStepCheckout !== 'undefined') {
 		(function(shippingMethod, updateForm) {
 			var showShippingFormOriginal = oneStepCheckout.showShippingForm;
 			oneStepCheckout.showShippingForm = showShippingFormMy;
@@ -64,7 +64,8 @@ function initPvzLists() {
 										query['filter'] = courierexe[key].pvzParams;
 										query['filter']['town'] = this.parents(
 											'form').
-											find('[name="city"]')[0].value;
+											find('[name="params[' + key +
+												'][sm_courierexe_townto]"]')[0].value;
 										query['task'] = 'pvz';
 										return query;
 									},

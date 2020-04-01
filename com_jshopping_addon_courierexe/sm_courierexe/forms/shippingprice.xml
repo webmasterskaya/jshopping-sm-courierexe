@@ -85,15 +85,6 @@
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
             </field>
-            <field name="show_pvz_map"
-                   type="radio"
-                   label="Показывать карту"
-                   class="btn-group btn-group-yesno"
-                   showon="show_pvz:1"
-                   default="0">
-                <option value="1">JYES</option>
-                <option value="0">JNO</option>
-            </field>
             <field type="spacer" hr="true"/>
         </fieldset>
     </fields>
