@@ -93,7 +93,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			'service'         => $shipping_method_params['shipping_service'],
 			'price'           => $order->order_total,
 			'paytype'         => $this->sm_config['pay_systems'][$order->payment_method_id] ? $this->sm_config['pay_systems'][$order->payment_method_id] : 'CASH',
-			'deliveryprice'   => $order->jshop_price_shipping,
+			'deliveryprice'   => $order->order_shipping,
 			'acceptpartially' => 'NO'
 		];
 
@@ -101,7 +101,7 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 		foreach ($cart->products as $product)
 		{
 			$products[] = [
-				'item'     => htmlspecialchars($product['product_name']),
+				'name'     => htmlspecialchars($product['product_name']),
 				'quantity' => $product['quantity'],
 				'mass'     => $product['weight'],
 				'retprice' => $product['price'],

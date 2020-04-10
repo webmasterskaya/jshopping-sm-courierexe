@@ -338,6 +338,9 @@ class MeasoftCourier
 
 	protected function addXMLnode(SimpleXMLElement &$xml, $name, $data)
 	{
+		if($xml->getName() == 'items'){
+			$name = 'item';
+		}
 		$node = $xml->addChild($name,
 			is_array($data) ? (isset($data['value']) && is_scalar($data['value']) ? $data['value'] : null) : $data);
 		if (isset($data['attributes']))
@@ -414,6 +417,11 @@ class MeasoftCourier
 					),
 					'value'      => $item['name'],
 				);
+				//Если передан код
+				if (isset($item['extcode']) && $item['extcode'])
+				{
+					$order_item['attributes']['extcode'] = strip_tags($item['extcode']);
+				}
 				//Если передан артикул
 				if (isset($item['article']) && $item['article'])
 				{
@@ -497,7 +505,8 @@ class MeasoftCourier
 			'order' => [
 				'attributes' => ['orderno' => $order['orderno']],
 				'value'      => $data,
-			]
+			],
+			'items' => $order_items
 		]));
 		if (isset($result->createorder[0]['orderno']))
 		{
