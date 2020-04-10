@@ -78,7 +78,6 @@ class sm_courierexe extends shippingextRoot
 			return 0;
 		}
 
-		$overprice_1  = !empty($method_params['overprice_1']) ? $method_params['overprice_1'] / 100 : 0;
 		$overprice_2  = !empty($method_params['overprice_2']) ? $method_params['overprice_2'] / 100 : 0;
 		$overprice_rr = !empty($method_params['overprice_rr']) ? $method_params['overprice_rr'] * 1 : 0;
 
@@ -119,7 +118,6 @@ class sm_courierexe extends shippingextRoot
 			$tarif = $this->connection->calculate($calcParams);
 
 			$tarifPrice = $tarif[$params['shipping_service']]['price'] + $overprice_2_value + $overprice_rr_value;
-			$tarifPrice = $tarifPrice + (($tarifPrice + $cart->summ) * $overprice_1);
 
 			return saveAsPrice($tarifPrice);
 		}

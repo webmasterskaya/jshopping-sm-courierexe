@@ -89,13 +89,6 @@
             <field
                     type="note"
                     label="Параметры расчёта доп. услуг"/>
-            <field name="overprice_1"
-                   type="number"
-                   label="% от суммы заказа"
-                   min="0"
-                   step="0.1"
-                   default="1.5">
-            </field>
             <field name="overprice_2"
                    type="number"
                    label="% от объявленной стоимости"
