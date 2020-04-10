@@ -34,12 +34,6 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 	public function onBeforeCreateOrder(&$order, &$cart, &$checkout)
 	{
-//		echo "<pre>";
-//		var_dump($order);
-//		die();
-
-		//payment_method_id
-
 		$shipping_params_data = $order->getShippingParamsData();
 
 		if (!$shipping_params_data['sm_courierexe'])
@@ -52,9 +46,20 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 
 		$city = array_shift($this->getCitiesList(!empty($order->d_city) ? $order->d_city : $order->city, 1));
 
+		if (!empty($order->delivery_adress))
+		{
+			$address = implode(',', [$order->d_street, $order->d_home, $order->d_apartment]);
+		}
+		else
+		{
+			$address = implode(',', [$order->street, $order->home, $order->apartment]);
+		}
+
 		if (!empty($shipping_params_data['sm_courierexe_pvz_id']))
 		{
 			$shippingForm = $shipping_method->getShippingForm();
+
+			$address = $shipping_params_data['sm_courierexe_pvz_id'];
 
 			$filter = ['town' => $city['name'], 'code' => $shipping_params_data['sm_courierexe_pvz_id']];
 			$pvz    = array_shift($this->getPvzList($filter));
@@ -74,15 +79,6 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			$order->setShippingParamsData($shipping_params_data);
 		}
 
-		if (!empty($order->delivery_adress))
-		{
-			$address = implode(',', [$order->d_street, $order->d_home, $order->d_apartment]);
-		}
-		else
-		{
-			$address = implode(',', [$order->street, $order->home, $order->apartment]);
-		}
-
 		$newOrder = [
 			'orderno'         => $order->order_number,
 			'person'          => implode(' ', [$order->d_f_name . ' ' . $order->d_l_name . ' ' . $order->d_m_name]),
@@ -91,8 +87,8 @@ class plgJshoppingcheckoutCourierexe extends CMSPlugin
 			'address'         => $address,
 			'weight'          => saveAsPrice($cart->getWeightProducts()),
 			'service'         => $shipping_method_params['shipping_service'],
-			'price'           => $order->order_total,
-			'paytype'         => $this->sm_config['pay_systems'][$order->payment_method_id] ? $this->sm_config['pay_systems'][$order->payment_method_id] : 'CASH',
+			'price'           => $order->order_summ,
+			'paytype'         => $this->sm_config['pay_systems'][$order->payment_method_id],
 			'deliveryprice'   => $order->order_shipping,
 			'acceptpartially' => 'NO'
 		];
