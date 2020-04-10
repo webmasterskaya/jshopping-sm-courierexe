@@ -63,7 +63,7 @@ HTMLHelper::_('stylesheet', 'com_jshopping_addon_courierexe/admin-style.css',
 								<?php echo HTMLHelper::_('select.genericlist', [
 									HTMLHelper::_('select.option', 'CASH', 'Наличными при получении'),
 									HTMLHelper::_('select.option', 'CARD', 'Картой при получении'),
-									HTMLHelper::_('select.option', 'NONE', 'Без оплаты'),
+									HTMLHelper::_('select.option', 'NO', 'Без оплаты'),
 									HTMLHelper::_('select.option', 'OTHER', 'Прочее ')
 								], 'params[pay_systems][' . $paymentMethod->payment_id . ']', [], 'value', 'text',
 									!empty($config['pay_systems'][$paymentMethod->payment_id]) ? $config['pay_systems'][$paymentMethod->payment_id] : 'PAYMENT_TYPE_CASH',
