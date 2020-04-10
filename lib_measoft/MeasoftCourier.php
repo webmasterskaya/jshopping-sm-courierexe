@@ -484,11 +484,11 @@ class MeasoftCourier
 					$data[$param] = $value ?: 0;
 					break;
 				case 'paytype':
-					$data[$param] = $value && in_array($value, $this->getPaymentTypes()) ?: self::PAYMENT_TYPE_CASH;
+					$data[$param] = $value && in_array($value, $this->getPaymentTypes()) ? $value : self::PAYMENT_TYPE_CASH;
 					break;
 				case 'receiverpays':
 					$data[$param] = $value && in_array($value,
-						array(self::RECEIVER_PAYS_YES, self::RECEIVER_PAYS_NO)) ?: self::RECEIVER_PAYS_NO;
+						array(self::RECEIVER_PAYS_YES, self::RECEIVER_PAYS_NO)) ? $value : self::RECEIVER_PAYS_NO;
 					break;
 				case 'return':
 					$data[$param] = $value && in_array($value,
