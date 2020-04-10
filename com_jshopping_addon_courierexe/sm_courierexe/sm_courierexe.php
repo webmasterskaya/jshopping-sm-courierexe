@@ -52,6 +52,8 @@ class sm_courierexe extends shippingextRoot
 		}
 
 		$weight_sum = saveAsPrice($cart->getWeightProducts());
+		$weight_sum = !empty($weight_sum) ? $weight_sum : 1;
+
 		$length_sum = 0;
 		$width_sum  = 0;
 		$height_sum = 0;
@@ -71,11 +73,18 @@ class sm_courierexe extends shippingextRoot
 			}
 		}
 
-
 		if (!strlen($cityto))
 		{
 			return 0;
 		}
+
+		$overprice_1  = !empty($method_params['overprice_1']) ? $method_params['overprice_1'] / 100 : 0;
+		$overprice_2  = !empty($method_params['overprice_2']) ? $method_params['overprice_2'] / 100 : 0;
+		$overprice_rr = !empty($method_params['overprice_rr']) ? $method_params['overprice_rr'] * 1 : 0;
+
+		$overprice_1_value  = saveAsPrice($cart->summ * $overprice_1);
+		$overprice_2_value  = saveAsPrice($cart->summ * $overprice_2);
+		$overprice_rr_value = saveAsPrice($weight_sum * $overprice_rr);
 
 		$this->connection = MeasoftCourier::getInstance();
 
@@ -110,7 +119,9 @@ class sm_courierexe extends shippingextRoot
 		{
 			$tarif = $this->connection->calculate($calcParams);
 
-			return $tarif[$params['shipping_service']]['price'];
+			$tarifPrice = $tarif[$params['shipping_service']]['price'] + $overprice_1_value + $overprice_2_value + $overprice_rr_value;
+
+			return saveAsPrice($tarifPrice);
 		}
 		catch (Exception $e)
 		{

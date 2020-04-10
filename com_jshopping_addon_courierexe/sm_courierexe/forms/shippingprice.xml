@@ -86,6 +86,31 @@
                 <option value="0">JNO</option>
             </field>
             <field type="spacer" hr="true"/>
+            <field
+                    type="note"
+                    label="Параметры расчёта доп. услуг"/>
+            <field name="overprice_1"
+                   type="number"
+                   label="% от суммы заказа"
+                   min="0"
+                   step="0.1"
+                   default="1.5">
+            </field>
+            <field name="overprice_2"
+                   type="number"
+                   label="% от объявленной стоимости"
+                   min="0"
+                   step="0.1"
+                   default="0.5">
+            </field>
+            <field name="overprice_rr"
+                   type="number"
+                   label="Стоимость 1 кг разгрузки"
+                   description="Стоимость разгрузочно-погрузочных работ, за 1кг веса заказа"
+                   min="0"
+                   step="0.01"
+                   default="2.20">
+            </field>
         </fieldset>
     </fields>
 </form>
