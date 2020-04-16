@@ -69,13 +69,14 @@ class sm_courierexe_form extends ShippingFormRoot
 
 		if ($shipping_params['show_pvz'])
 		{
-			$doc->addScriptOptions('sm_courierexe', [
+			$arParams = [
 				$shipping_id => [
 					'pvzParams'          => $pvzParams,
 					'show_pvz_list'      => $shipping_params['show_pvz_list'],
 					'show_pvz_list_ajax' => $shipping_params['show_pvz_list_ajax'],
 				]
-			], true);
+			];
+			echo "<script>var sm_courierexe = ". json_encode($arParams, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) ."</script>";
 		}
 
 		$user = &JFactory::getUser();
