@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			function updateFormMy(step) {
 				step = step || 2;
 				updateFormOriginal.apply(oneStepCheckout, arguments);
-				if (step == 2) {
-					console.log(step);
+				if (step == 3) {
 					initPvzLists();
 				}
 			}
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var pvzData = {};
 
 function initPvzLists() {
-	var courierexe = Joomla.getOptions('sm_courierexe');
+	var courierexe = sm_courierexe;
 	if (!!courierexe) {
 		for (key in courierexe) {
 			if (courierexe.hasOwnProperty(key)) {
