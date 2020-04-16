@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" version="3.9" client="site" method="upgrade" group="jshoppingcheckout">
     <name>PLG_JSHOPPINGCHECKOUT_COURIEREXE</name>
-    <author>Webmasterskaya</author>
+    <author>Artem Vasilev - Webmasterskaya</author>
     <creationDate>01.02.2020</creationDate>
     <copyright>Copyright (C) 2020 Webmasterskaya. All rights reserved.</copyright>
     <license>GNU General Public License version 3 or later; see LICENSE.txt</license>

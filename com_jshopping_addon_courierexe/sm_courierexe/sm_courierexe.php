@@ -3,9 +3,10 @@
  * @package    JShopping - Courierexe shipping
  * @version    1.0.0-rc
  * @author     Artem Vasilev - webmasterskaya.xyz
- * @copyright  Copyright (c) 2018 - 2020 Webmasterskaya. All rights reserved.
- * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
+ * @copyright  Copyright (c) 2020 Webmasterskaya. All rights reserved.
+ * @license    GNU General Public License version 3 or later; see LICENSE.txt
  * @link       https://webmasterskaya.xyz/
+ * @since      1.0.0
  */
 
 use Joomla\CMS\Form\Form;
@@ -111,9 +112,9 @@ class sm_courierexe extends shippingextRoot
 		{
 			$tarif = $this->connection->calculate($calcParams);
 
-			$commissionStm = floatval($method_params['commission_stm']) / 100;
+			$commissionStm   = floatval($method_params['commission_stm']) / 100;
 			$commissionGoods = floatval($method_params['commission_goods']) / 100;
-			$commissionLoad = floatval($method_params['commission_load']);
+			$commissionLoad  = floatval($method_params['commission_load']);
 
 			$tarifPrice = $tarif[$params['shipping_service']]['price'] + ($cart->summ * $commissionGoods) + ($commissionLoad * $weight_sum);
 			$tarifPrice = $tarifPrice + (($tarifPrice + $cart->summ) * $commissionStm);

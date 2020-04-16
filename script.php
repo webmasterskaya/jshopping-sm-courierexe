@@ -6,9 +6,10 @@ use Joomla\CMS\Factory;
  * @package    JShopping - Courierexe shipping
  * @version    1.0.0-rc
  * @author     Artem Vasilev - webmasterskaya.xyz
- * @copyright  Copyright (c) 2018 - 2020 Webmasterskaya. All rights reserved.
- * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
+ * @copyright  Copyright (c) 2020 Webmasterskaya. All rights reserved.
+ * @license    GNU General Public License version 3 or later; see LICENSE.txt
  * @link       https://webmasterskaya.xyz/
+ * @since      1.0.0
  */
 class pkg_jshopping_courierexeInstallerScript
 {

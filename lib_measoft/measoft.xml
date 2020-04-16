@@ -2,7 +2,7 @@
 <extension version="3.9" type="library" method="upgrade">
     <name>LIB_MEASOFT</name>
     <libraryname>measoft</libraryname>
-    <author>Webmasterskaya</author>
+    <author>Artem Vasilev - Webmasterskaya</author>
     <creationDate>01.02.2020</creationDate>
     <copyright>Copyright (C) 2020 Webmasterskaya. All rights reserved.</copyright>
     <license>GNU General Public License version 3 or later; see LICENSE.txt</license>

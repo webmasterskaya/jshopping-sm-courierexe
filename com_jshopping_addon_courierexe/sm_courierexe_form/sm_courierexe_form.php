@@ -3,9 +3,10 @@
  * @package    JShopping - Courierexe shipping
  * @version    1.0.0-rc
  * @author     Artem Vasilev - webmasterskaya.xyz
- * @copyright  Copyright (c) 2018 - 2020 Webmasterskaya. All rights reserved.
- * @license    GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
+ * @copyright  Copyright (c) 2020 Webmasterskaya. All rights reserved.
+ * @license    GNU General Public License version 3 or later; see LICENSE.txt
  * @link       https://webmasterskaya.xyz/
+ * @since      1.0.0
  */
 
 use Joomla\CMS\Factory;
@@ -76,7 +77,8 @@ class sm_courierexe_form extends ShippingFormRoot
 					'show_pvz_list_ajax' => $shipping_params['show_pvz_list_ajax'],
 				]
 			];
-			echo "<script>var sm_courierexe = ". json_encode($arParams, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) ."</script>";
+			echo "<script>var sm_courierexe = " . json_encode($arParams,
+					JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . "</script>";
 		}
 
 		$user = &JFactory::getUser();
