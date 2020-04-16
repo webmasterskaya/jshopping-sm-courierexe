@@ -7,7 +7,7 @@
     <license>GNU General Public License version 3 or later; see LICENSE.txt</license>
     <authorEmail>dev@webmasterskaya.xyz</authorEmail>
     <authorUrl>https://webmasterskaya.xyz</authorUrl>
-    <version>1.0.0-rc</version>
+    <version>1.0.0-rc2</version>
     <description>COM_JSHOPPING_ADDON_COURIEREXE_XML_DESCRIPTION</description>
 
     <fileset>
