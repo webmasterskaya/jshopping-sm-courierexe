@@ -89,14 +89,22 @@
             <field
                     type="note"
                     label="Параметры расчёта доп. услуг"/>
-            <field name="overprice_2"
+            <field name="commission_stm"
+                   type="number"
+                   label="% от суммы заказа"
+                   description="Процент от стоимости заказа, при передаче денег"
+                   min="0"
+                   step="0.1"
+                   default="1.5">
+            </field>
+            <field name="commission_goods"
                    type="number"
                    label="% от объявленной стоимости"
                    min="0"
                    step="0.1"
                    default="0.5">
             </field>
-            <field name="overprice_rr"
+            <field name="commission_load"
                    type="number"
                    label="Стоимость 1 кг разгрузки"
                    description="Стоимость разгрузочно-погрузочных работ, за 1кг веса заказа"

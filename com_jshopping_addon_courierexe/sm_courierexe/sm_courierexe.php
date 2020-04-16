@@ -78,12 +78,6 @@ class sm_courierexe extends shippingextRoot
 			return 0;
 		}
 
-		$overprice_2  = !empty($method_params['overprice_2']) ? $method_params['overprice_2'] / 100 : 0;
-		$overprice_rr = !empty($method_params['overprice_rr']) ? $method_params['overprice_rr'] * 1 : 0;
-
-		$overprice_2_value  = saveAsPrice($cart->summ * $overprice_2);
-		$overprice_rr_value = saveAsPrice($weight_sum * $overprice_rr);
-
 		$this->connection = MeasoftCourier::getInstance();
 
 		$calcParams = array(
@@ -117,7 +111,12 @@ class sm_courierexe extends shippingextRoot
 		{
 			$tarif = $this->connection->calculate($calcParams);
 
-			$tarifPrice = $tarif[$params['shipping_service']]['price'] + $overprice_2_value + $overprice_rr_value;
+			$commissionStm = floatval($method_params['commission_stm']) / 100;
+			$commissionGoods = floatval($method_params['commission_goods']) / 100;
+			$commissionLoad = floatval($method_params['commission_load']);
+
+			$tarifPrice = $tarif[$params['shipping_service']]['price'] + ($cart->summ * $commissionGoods) + ($commissionLoad * $weight_sum);
+			$tarifPrice = $tarifPrice + (($tarifPrice + $cart->summ) * $commissionStm);
 
 			return saveAsPrice($tarifPrice);
 		}
