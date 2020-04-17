@@ -191,7 +191,7 @@ class sm_courierexe_form extends ShippingFormRoot
 	{
 		if (!empty($params['show_pvz_list']) && empty($params['sm_courierexe_pvz_id']))
 		{
-			$this->setErrorMessage('Не выбран пункта доставки!');
+			$this->setErrorMessage('Не выбран пункт доставки!');
 
 			return false;
 		}
