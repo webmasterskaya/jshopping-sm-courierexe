@@ -20,7 +20,6 @@ class sm_courierexe_form extends ShippingFormRoot
 {
 	function showForm($shipping_id, $shippinginfo, $params)
 	{
-		$doc      = Factory::getDocument();
 		$language = Factory::getLanguage();
 		$language->load('com_jshopping_addon_courierexe', JPATH_ADMINISTRATOR, $language->getTag(), true);
 		$connection = MeasoftCourier::getInstance();
@@ -170,6 +169,9 @@ class sm_courierexe_form extends ShippingFormRoot
 						return;
 					}
 				}
+
+				echo '<input type="hidden" name="params[' . $shipping_id . '][show_pvz_list]" value="1"/>';
+
 				echo HTMLHelper::_('select.genericlist', [], 'params[' . $shipping_id . '][sm_courierexe_pvz_id]');
 			}
 		}
@@ -183,5 +185,17 @@ class sm_courierexe_form extends ShippingFormRoot
 			'sm_courierexe_pvz_parentname' => 'Логистическая компания',
 			'sm_courierexe_pvz_address'    => 'Адрес пункта доставки',
 		];
+	}
+
+	function check($params, $sh_method)
+	{
+		if (!empty($params['show_pvz_list']) && empty($params['sm_courierexe_pvz_id']))
+		{
+			$this->setErrorMessage('Не выбран пункта доставки!');
+
+			return false;
+		}
+
+		return true;
 	}
 }
