@@ -178,10 +178,10 @@ class sm_courierexe_form extends ShippingFormRoot
 	function getDisplayNameParams()
 	{
 		return [
-			'sm_courierexe_pvz_id'         => 'Код ПВЗ в системе',
-			'sm_courierexe_pvz_name'       => 'Наименование ПВЗ',
-			'sm_courierexe_pvz_parentname' => 'Наименование родительского элемента',
-			'sm_courierexe_pvz_address'    => 'Адрес ПВЗ',
+			'sm_courierexe_pvz_id'         => 'Код пункта доставки',
+			'sm_courierexe_pvz_name'       => 'Наименование пункта доставки',
+			'sm_courierexe_pvz_parentname' => 'Логистическая компания',
+			'sm_courierexe_pvz_address'    => 'Адрес пункта доставки',
 		];
 	}
 }
