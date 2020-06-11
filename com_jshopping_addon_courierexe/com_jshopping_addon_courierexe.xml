@@ -10,13 +10,22 @@
     <version>1.0.0-rc2</version>
     <description>COM_JSHOPPING_ADDON_COURIEREXE_XML_DESCRIPTION</description>
 
-    <fileset>
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
 
+    <fileset>
         <files folder="language" target="administrator/language">
             <filename>en-GB/en-GB.com_jshopping_addon_courierexe.ini</filename>
             <filename>ru-RU/ru-RU.com_jshopping_addon_courierexe.ini</filename>
         </files>
-
         <files folder="media" target="media/com_jshopping_addon_courierexe">
             <folder>css</folder>
             <folder>js</folder>
@@ -32,7 +41,6 @@
             <filename>js/i18n/en.js</filename>
             <filename>js/i18n/ru.js</filename>
         </files>
-
         <files folder="sm_courierexe" target="components/com_jshopping/shippings/sm_courierexe">
             <folder>fields</folder>
             <folder>forms</folder>
@@ -45,10 +53,11 @@
             <filename>shippingpriceform.php</filename>
             <filename>sm_courierexe.php</filename>
         </files>
-
         <files folder="sm_courierexe_form" target="components/com_jshopping/shippingform/sm_courierexe_form">
             <filename>sm_courierexe_form.php</filename>
         </files>
-
+        <files target="administrator/manifests/files/com_jshopping_addon_courierexe">
+            <folder>sql</folder>
+        </files>
     </fileset>
 </extension>
