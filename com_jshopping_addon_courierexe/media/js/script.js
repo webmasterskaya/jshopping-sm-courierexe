@@ -67,7 +67,7 @@ function initPvzLists() {
 							'][sm_courierexe_pvz_id]"]').
 							select2({
 								ajax: {
-									url: '/component/ajax/?plugin=courierexe&format=json&group=jshoppingcheckout',
+									url: Joomla.getOptions('system.paths').root + '/component/ajax/?plugin=courierexe&format=json&group=jshoppingcheckout',
 									data: function() {
 										var query = {};
 										query['filter'] = courierexe[key].pvzParams;

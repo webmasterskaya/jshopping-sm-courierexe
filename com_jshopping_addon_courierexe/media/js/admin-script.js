@@ -10,7 +10,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 	jQuery('[name="sm_params[townfrom]"]').autocomplete({
-		serviceUrl: '/component/ajax/?plugin=courierexe&format=json&group=jshoppingcheckout',
+		serviceUrl: Joomla.getOptions('system.paths').root + '/component/ajax/?plugin=courierexe&format=json&group=jshoppingcheckout',
 		minChars: 3,
 		deferRequestBy: 300,
 		params: {
