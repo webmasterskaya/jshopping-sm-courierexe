@@ -67,6 +67,7 @@ class sm_courierexe_form extends ShippingFormRoot
 			$pvzParams['acceptindividuals '] = $shipping_params['acceptindividuals '];
 		}
 
+		$arParams = [];
 		if ($shipping_params['show_pvz'])
 		{
 			$arParams = [
@@ -76,9 +77,10 @@ class sm_courierexe_form extends ShippingFormRoot
 					'show_pvz_list_ajax' => $shipping_params['show_pvz_list_ajax'],
 				]
 			];
-			echo "<script>var sm_courierexe = " . json_encode($arParams,
-					JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . "</script>";
+
 		}
+		echo "<script>var sm_courierexe = " . json_encode($arParams,
+				JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . "</script>";
 
 		$user = &JFactory::getUser();
 		if ($user->id)
